@@ -16,8 +16,9 @@ namespace IMUSE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SerialPortManager manager = new SerialPortManager();
-            Application.Run(new Form1());
+            Form1 form = new Form1();
+            SerialPortManager manager = new SerialPortManager(form);
+            Application.Run(form);
         }
     }
 }
