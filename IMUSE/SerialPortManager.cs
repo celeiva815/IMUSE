@@ -24,7 +24,6 @@ namespace IMUSE
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
 
         const int CLICK_TIME = 500;
-        const int DOUBLE_CLICK_TIME = 200;
         const int CALIBRATION_ITERATION = 200;
         const double CALIBRATION_SAFETY = 0.3;
         const double Z_MIN = 45;
@@ -39,7 +38,6 @@ namespace IMUSE
         double yMin = 0;
         double yMax = 0;
 
-        Stopwatch doubleClickTime = new Stopwatch();
         Stopwatch clickTime = new Stopwatch();
         
         bool couldBeDoubleClick = false;
