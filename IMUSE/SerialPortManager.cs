@@ -44,7 +44,6 @@ namespace IMUSE
         
         bool couldBeDoubleClick = false;
         bool isLeftClick = false;
-        bool isRightClick = false;
         bool wasClicked = false;
         bool wasCalibrated = false;
         int calibrationIterations = 0;
@@ -95,9 +94,9 @@ namespace IMUSE
                 //Console.WriteLine(s);
                 string[] components = s.Split(' ');
 
-                double x = Double.Parse(components[1]);
-                double y = Double.Parse(components[0]);
-                double z = Double.Parse(components[2]);
+                double x = Double.Parse(components[1]) * 100.0;
+                double y = Double.Parse(components[0]) * 100.0;
+                double z = Double.Parse(components[2]) * 100.0;
 
                 form.SetX(x);
                 form.SetY(y);
@@ -201,7 +200,6 @@ namespace IMUSE
                     //reset flags and times
                     wasClicked = false;
                     isLeftClick = false;
-                    isRightClick = false;
                     couldBeDoubleClick = false;
                     clickTime.Reset();
                 }
@@ -267,8 +265,8 @@ namespace IMUSE
             movementY = (int)(PY + IY + DY);
             lastDifferenceY = differenceY;
 
-            Console.WriteLine("PX:" + PX + " IX: " + IX + " DX: " + DX);
-            Console.WriteLine("PY:" + PY + " IY: " + IY + " DY: " + DY);
+            //Console.WriteLine("PX:" + PX + " IX: " + IX + " DX: " + DX);
+            //Console.WriteLine("PY:" + PY + " IY: " + IY + " DY: " + DY);
 
             //update mouse position
             Cursor.Position = new Point(Cursor.Position.X + movementX, Cursor.Position.Y + movementY);

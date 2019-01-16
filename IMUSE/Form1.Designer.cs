@@ -287,7 +287,7 @@
             this.Controls.Add(this.xLabel);
             this.Controls.Add(this.labelStatusY);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "IMUSE Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
