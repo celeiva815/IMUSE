@@ -37,6 +37,9 @@ namespace IMUSE
         double xMax = 0;
         double yMin = 0;
         double yMax = 0;
+        double lastX = 0.0;
+        double lastY = 0.0;
+        double lastZ = 0.0;
 
         Stopwatch clickTime = new Stopwatch();
         
@@ -86,6 +89,7 @@ namespace IMUSE
         private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             // Show all the incoming data in the port's     
+            
             try
             {
                 string s = port.ReadLine();
@@ -96,24 +100,29 @@ namespace IMUSE
                 double y = Double.Parse(components[0]) * 100.0;
                 double z = Double.Parse(components[2]) * 100.0;
 
-                form.SetX(x);
-                form.SetY(y);
-                form.SetZ(z);
+                this.lastX = x;
+                this.lastY = y;
+                this.lastZ = z;
+           
+            form.SetX(this.lastX);
+                form.SetY(this.lastY);
+                form.SetZ(this.lastZ);
                 form.SetZMax(Z_MAX);
                 form.SetZMin(Z_MIN);
 
                 if (!wasCalibrated)
-                    CalibrateMouse(x, y);
+                    CalibrateMouse(this.lastX, this.lastY);
 
-                if (!IsClick(z) && wasCalibrated)
+                if (!IsClick(this.lastZ) && wasCalibrated)
                 {
-                   bool isMouseMoving = MoveMouse(x, y);
+                   bool isMouseMoving = MoveMouse(this.lastX, this.lastY);
                 }
-            }
+             }
             catch (Exception)
             {
 
             }
+
         }
 
         private void CalibrateMouse(double x, double y)
